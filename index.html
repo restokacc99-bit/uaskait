@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BITZZ PHONE | Apple Premium Reseller</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    
+    <!-- AUTH POP-UP OVERLAY (FORM REGISTRASI KEANGGOTAAN) -->
+    <div id="authModal" class="auth-overlay" style="display: none;">
+      <div class="auth-popup">
+        <h2><i class="fa-solid fa-user-shield"></i> Autentikasi Keanggotaan</h2>
+        <p>Lengkapi profil Anda untuk melanjutkan transaksi.</p>
+        <form id="registerForm" onsubmit="handleRegistration(event)">
+          <div class="form-group">
+            <label>Nama Lengkap *</label>
+            <input type="text" id="regName" required placeholder="Nama Anda" />
+          </div>
+          <div class="form-group">
+            <label>Nomor WhatsApp *</label>
+            <input type="tel" id="regPhone" required placeholder="08xxxxxxxx" />
+          </div>
+          <div class="form-group">
+            <label>Alamat Lengkap *</label>
+            <input type="text" id="regAddress" required placeholder="Jl. Contoh No. 1" />
+          </div>
+          <div class="form-group">
+            <label>No. Rekening/E-Wallet</label>
+            <input type="text" id="regBankNo" required placeholder="Nomor akun pembayaran" />
+          </div>
+          <div class="form-group">
+            <label>Penyedia Layanan</label>
+            <select id="regBankName" required>
+              <option value="SeaBank">SeaBank</option>
+              <option value="DANA">DANA</option>
+              <option value="BCA">BCA</option>
+              <option value="Mandiri">Bank Mandiri</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">KONFIRMASI & LANJUT CHECKOUT</button>
+        </form>
+        <button onclick="closeAuthModal()" class="btn-close-text">Kembali ke Keranjang</button>
+      </div>
+    </div>
+
+    <!-- MAIN WEBSITE WRAPPER -->
+    <div id="mainContentWrapper">
+      
+      <!-- HEADER SITE -->
+      <header class="site-header">
+        <div class="header-container">
+          <a href="index.html" class="logo-brand">
+            <span class="logo-mols">BITZZ</span> <span class="logo-rb">PHONE</span>
+          </a>
+          <nav class="main-nav" id="main-nav">
+            <ul>
+              <li><a href="index.html" class="nav-item active">Home</a></li>
+              <li><a href="#katalogSection" class="nav-item">Produk</a></li>
+              <li><a href="#profil" class="nav-item">Tentang Kami</a></li>
+            </ul>
+          </nav>
+          <div class="header-actions">
+            <span id="userGreeting" class="user-greeting"></span>
+            <button class="action-btn cart-trigger" onclick="openCartModal()">
+              <i class="fa-solid fa-bag-shopping"></i>
+              <span class="cart-badge" id="cartCount">0</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <span class="hero-badge">Official Premium Apple Reseller</span>
+            <h1>BITZZ PHONE</h1>
+            <p>Gadget & Perangkat Apple Premium Terlengkap dengan Harga Terbaik. Rasakan Pengalaman Berbelanja Eksklusif.</p>
+            
+            <!-- Form Pencarian Real-Time -->
+            <div class="search-container">
+              <input type="text" id="mainSearch" placeholder="Cari tipe perangkat Apple..." onkeyup="searchApp()" />
+            </div>
+
+            <div class="hero-cta-group">
+              <a href="#profil" class="btn btn-secondary">Hubungi Alamat Toko</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- CATEGORIES SECTION -->
+        <section class="categories-section container">
+          <h2 class="section-title">Pilih Produk Yang Dicari</h2>
+          <div class="category-grid">
+            <button class="category-card" onclick="filterCategory('iphone', this)">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              <h3>iPhone</h3>
+            </button>
+            <button class="category-card" onclick="filterCategory('macbook', this)">
+              <i class="fa-solid fa-laptop"></i>
+              <h3>MacBook</h3>
+            </button>
+            <button class="category-card" onclick="filterCategory('ipad', this)">
+              <i class="fa-solid fa-tablet-screen-button"></i>
+              <h3>iPad Collection</h3>
+            </button>
+          </div>
+        </section>
+
+        <!-- PRODUCT GRID CATALOGUE (AWALNYA TERSEMBUNYI) -->
+        <section id="katalogSection" class="promo-section container" style="display: none;">
+          <h2 class="section-title" id="katalogTitle">Katalog Produk</h2>
+          <div class="product-grid" id="productGrid">
+            
+            <!-- ==========================================================================
+               KATEGORI IPHONE (TOTAL 11 PRODUK SESUAI FILE HTML 1)
+               ========================================================================== -->
+            <article class="product-card" data-title="iphone 17 pro max" data-category="iphone">
+              <div class="badge-new">Terbaru</div>
+              <div class="product-image-container">
+                <img src="image/17_pm-removebg-preview.png" alt="iPhone 17 Pro Max" class="product-image" />
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Smartphone</span>
+                <h3 class="product-name">iPhone 17 Pro Max</h3>
+                <div class="product-price">Rp 26.500.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-17pm" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPhone 17 Pro Max', 26500000, 'qty-17pm')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="iphone 17 pro" data-category="iphone">
+              <div class="badge-new">Terbaru</div>
+              <div class="product-image-container">
+                <img src="image/17p-removebg-preview.png" alt="iPhone 17 Pro" class="product-image" />
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Smartphone</span>
+                <h3 class="product-name">iPhone 17 Pro</h3>
+                <div class="product-price">Rp 23.000.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-17p" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPhone 17 Pro', 23000000, 'qty-17p')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="iphone 17 basic" data-category="iphone">
+              <div class="badge-new">Terbaru</div>
+              <div class="product-image-container">
+                <img src="image/17b-removebg-preview.png" alt="iPhone 17 Standard" class="product-image" />
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Smartphone</span>
+                <h3 class="product-name">iPhone 17 Standard</h3>
+                <div class="product-price">Rp 15.000.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-17b" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPhone 17 Standard', 15000000, 'qty-17b')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="iphone 16 pro max" data-category="iphone">
+              <div class="product-image-container">
+                <img src="image/ip_16_pm-removebg-preview.png" alt="iPhone 16 Pro Max" class="product-image" />
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Smartphone</span>
+                <h3 class="product-name">iPhone 16 Pro Max</h3>
+                <div class="product-price">Rp 23.500.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-16pm" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPhone 16 Pro Max', 23500000, 'qty-16pm')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="iphone 16 pro" data-category="iphone">
+              <div class="product-image-container">
+                <img src="image/ip_16_p-removebg-preview.png" alt="iPhone 16 Pro" class="product-image" />
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Smartphone</span>
+                <h3 class="product-name">iPhone 16 Pro</h3>
+                <div class="product-price">Rp 19.500.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-16p" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPhone 16 Pro', 19500000, 'qty-16p')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="iphone 16 basic" data-category="iphone">
+              <div class="product-image-container">
+                <img src="image/16_b-removebg-preview.png" alt="iPhone 16 Standard" class="product-image" />
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Smartphone</span>
+                <h3 class="product-name">iPhone 16 Standard</h3>
+                <div class="product-price">Rp 15.000.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-16b" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPhone 16 Standard', 15000000, 'qty-16b')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="iphone 15 pro max" data-category="iphone">
+              <div class="product-image-container">
+                <img src="image/ip_15_pm-removebg-preview.png" alt="iPhone 15 Pro Max" class="product-image" />
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Smartphone</span>
+                <h3 class="product-name">iPhone 15 Pro Max</h3>
+                <div class="product-price">Rp 11.000.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-15p" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPhone 15 Pro Max', 11000000, 'qty-15p')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="iphone 15 pro" data-category="iphone">
+              <div class="product-image-container">
+                <img src="image/ip_15p-removebg-preview.png" alt="iPhone 15 Pro" class="product-image" />
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Smartphone</span>
+                <h3 class="product-name">iPhone 15 Pro</h3>
+                <div class="product-price">Rp 19.500.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-15p_alt" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPhone 15 Pro', 19500000, 'qty-15p_alt')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="iphone 15 basic" data-category="iphone">
+              <div class="product-image-container">
+                <img src="image/ip_15_b-removebg-preview.png" alt="iPhone 15 Standard" class="product-image" />
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Smartphone</span>
+                <h3 class="product-name">iPhone 15 Standard</h3>
+                <div class="product-price">Rp 15.000.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-15b" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPhone 15 Standard', 15000000, 'qty-15b')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="iphone 14 pro max" data-category="iphone">
+              <div class="product-image-container">
+                <img src="image/iphone_14_pro_max_gold_1_3-removebg-preview.png" alt="iPhone 14 Pro Max" class="product-image" />
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Smartphone</span>
+                <h3 class="product-name">iPhone 14 Pro Max</h3>
+                <div class="product-price">Rp 9.500.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-14pm" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPhone 14 Pro Max', 9500000, 'qty-14pm')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="iphone 14 pro" data-category="iphone">
+              <div class="product-image-container">
+                <img src="image/sewa-rental-iphone-14-pro-jakarta-1-removebg-preview.png" alt="iPhone 14 Pro" class="product-image" />
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Smartphone</span>
+                <h3 class="product-name">iPhone 14 Pro</h3>
+                <div class="product-price">Rp 8.500.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-14p" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPhone 14 Pro', 8500000, 'qty-14p')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- ==========================================================================
+               KATEGORI MACBOOK (5 PRODUK)
+               ========================================================================== -->
+            <article class="product-card" data-title="macbook pro m3 pro" data-category="macbook">
+              <div class="badge-new">Hot Item</div>
+              <div class="product-image-container">
+                <img src="image/mcb3pro.png" alt="MacBook Pro M3 Pro" class="product-image" onerror="this.src='https://placehold.co/160x160/1f2937/ffffff?text=MacBook+Pro+M3'"/>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Computing</span>
+                <h3 class="product-name">MacBook Pro M3 Pro</h3>
+                <div class="product-price">Rp 28.999.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-mbpm3" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('MacBook Pro M3 Pro', 28999000, 'qty-mbpm3')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="macbook air m3" data-category="macbook">
+              <div class="product-image-container">
+                <img src="image/mba_13_m3_2024_hero.png" alt="MacBook Air M3" class="product-image" onerror="this.src='https://placehold.co/160x160/1f2937/ffffff?text=MacBook+Air+M3'"/>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Computing</span>
+                <h3 class="product-name">MacBook Air M3</h3>
+                <div class="product-price">Rp 19.450.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-mbam3" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('MacBook Air M3', 19450000, 'qty-mbam3')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="macbook pro m2" data-category="macbook">
+              <div class="product-image-container">
+                <img src="image/111869_sp870-macbook-pro-13-in-m2-2022.png" alt="MacBook Pro M2" class="product-image" onerror="this.src='https://placehold.co/160x160/1f2937/ffffff?text=MacBook+Pro+M2'"/>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Computing</span>
+                <h3 class="product-name">MacBook Pro M2</h3>
+                <div class="product-price">Rp 21.000.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-mbpm2" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('MacBook Pro M2', 21000000, 'qty-mbpm2')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="macbook air m2" data-category="macbook">
+              <div class="product-image-container">
+                <img src="image/macbook_air_m2_midnight_pdp_image_position-1__id_1_1.jpg" alt="MacBook Air M2" class="product-image" onerror="this.src='https://placehold.co/160x160/1f2937/ffffff?text=MacBook+Air+M2'"/>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Computing</span>
+                <h3 class="product-name">MacBook Air M2</h3>
+                <div class="product-price">Rp 16.200.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-mbam2" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('MacBook Air M2', 16200000, 'qty-mbam2')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="macbook pro m1" data-category="macbook">
+              <div class="product-image-container">
+                <img src="image/produk-1737789267.jpg" alt="MacBook Pro M1" class="product-image" onerror="this.src='https://placehold.co/160x160/1f2937/ffffff?text=MacBook+Pro+M1'"/>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Computing</span>
+                <h3 class="product-name">MacBook Pro M1</h3>
+                <div class="product-price">Rp 14.500.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-mbpm1" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('MacBook Pro M1', 14500000, 'qty-mbpm1')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- ==========================================================================
+               KATEGORI IPAD (5 PRODUK)
+               ========================================================================== -->
+            <article class="product-card" data-title="ipad pro m4" data-category="ipad">
+              <div class="badge-new">Ultra Thin</div>
+              <div class="product-image-container">
+                <img src="image/ipad-pro-11-inch-13-inch.png" alt="iPad Pro M4" class="product-image" onerror="this.src='https://placehold.co/160x160/1f2937/ffffff?text=iPad+Pro+M4'"/>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Tablet</span>
+                <h3 class="product-name">iPad Pro M4</h3>
+                <div class="product-price">Rp 19.499.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-ippm4" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPad Pro M4', 19499000, 'qty-ippm4')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="ipad air 6 m2" data-category="ipad">
+              <div class="product-image-container">
+                <img src="image/images.jpg" alt="iPad Air 6 M2" class="product-image" onerror="this.src='https://placehold.co/160x160/1f2937/ffffff?text=iPad+Air+6'"/>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Tablet</span>
+                <h3 class="product-name">iPad Air 6 M2</h3>
+                <div class="product-price">Rp 11.200.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-ipair6" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPad Air 6 M2', 11200000, 'qty-ipair6')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="ipad pro m2" data-category="ipad">
+              <div class="product-image-container">
+                <img src="image/ipad m2.jpg" alt="iPad Pro M2" class="product-image" onerror="this.src='https://placehold.co/160x160/1f2937/ffffff?text=iPad+Pro+M2'"/>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Tablet</span>
+                <h3 class="product-name">iPad Pro M2</h3>
+                <div class="product-price">Rp 14.800.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-ippm2" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPad Pro M2', 14800000, 'qty-ippm2')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="ipad 10th gen" data-category="ipad">
+              <div class="product-image-container">
+                <img src="image/ipad_gen_10_10_9_inci_wi-fi_blue_1_1.jpg" alt="iPad 10th Generation" class="product-image" onerror="this.src='https://placehold.co/160x160/1f2937/ffffff?text=iPad+10th+Gen'"/>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Tablet</span>
+                <h3 class="product-name">iPad 10th Gen</h3>
+                <div class="product-price">Rp 5.999.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-ip10" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPad 10th Gen', 5999000, 'qty-ip10')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-title="ipad mini 6" data-category="ipad">
+              <div class="product-image-container">
+                <img src="image/iPad Mini 6.png" alt="iPad Mini 6" class="product-image" onerror="this.src='https://placehold.co/160x160/1f2937/ffffff?text=iPad+Mini+6'"/>
+              </div>
+              <div class="product-info">
+                <span class="product-brand">Apple Tablet</span>
+                <h3 class="product-name">iPad Mini 6</h3>
+                <div class="product-price">Rp 7.850.000</div>
+                <div class="qty-box"><label>Qty:</label><input type="number" value="1" min="1" id="qty-ipmini6" /></div>
+                <div class="product-actions">
+                  <button class="btn-add-cart-main" onclick="addToCart('iPad Mini 6', 7850000, 'qty-ipmini6')"><i class="fa-solid fa-cart-plus"></i> Beli Perangkat</button>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section class="testimonials-section">
+          <div class="container">
+            <h2 class="section-title text-center">Apa Kata Mereka?</h2>
+            <div class="testimonial-grid">
+              <div class="testimonial-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"Pelayanan cepat banget! Beli iPhone 17 Pro sore, besok siangnya langsung mendarat dengan selamat di rumah. Packing kayu sangat aman berlapis."</p>
+                <h4>Rian H. - Bandung</h4>
+              </div>
+              <div class="testimonial-card">
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"Sangat terbantu dengan opsi pembayaran transfer SeaBank yang otomatis terkonfirmasi. Customer servicenya sangat ramah dan responsif."</p>
+                <h4>Siti M. - Jakarta</h4>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- DIALOG MODAL INTEGRASI POP-UP WINDOW (KERANJANG & INVOICE) -->
+      <div id="modal" class="modal"><div class="modal-content" id="modalContent"></div></div>
+
+      <!-- FOOTER SITE -->
+      <footer id="profil" class="site-footer">
+        <div class="container footer-grid">
+          <div class="footer-brand-info">
+            <h3>BITZZ PHONE</h3>
+            <p class="tagline">"Official Premium Apple Device Provider"</p>
+            <p class="address"><i class="fa-solid fa-location-dot"></i> Jl. Terusan Jenderal Sudirman No. 3, Bandung, Jawa Barat, Indonesia</p>
+          </div>
+          <div class="footer-links">
+            <h4>Navigasi Cepat</h4>
+            <ul>
+              <li><a href="#katalogSection">Katalog Produk</a></li>
+              <li><a href="#" onclick="openCartModal(); return false;">Tas Belanja Toko</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Hubungi Kami & Sosmed</h4>
+            <p><i class="fa-solid fa-clock"></i> Setiap Hari (09.00 - 21.00 WIB)</p>
+            <p><i class="fa-solid fa-phone"></i> WhatsApp: 0856-0086-5191</p>
+            <div class="social-medias">
+              <a href="https://instagram.com/bitzz.phone" target="_blank" aria-label="Instagram BITZZ PHONE"><i class="fa-brands fa-instagram"></i> @bitzz.phone</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom text-center">
+          <p>&copy; 2026 BITZZ PHONE. All Rights Reserved. Designed for Professional Portfolio Deployment.</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripting Execution -->
+    <script src="js/script.js"></script>
+  </body>
+</html>
